@@ -7,10 +7,10 @@ with open("README.md","r") as fh:
 
 setuptools.setup(
     name="jirator",
-    version="0.1.0",
+    version="0.1.1",
     author="hawry",
     entry_points = {
-        "console_scripts": ["jirator=jirator.jirator.main"]
+        "console_scripts": ["jirator=jirator.jirator:main"]
     },
     author_email="hawry@hawry.net",
     description="Fetch your assigned JIRA issues and checkout new branches with their ID",
