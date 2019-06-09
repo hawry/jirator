@@ -21,4 +21,5 @@ Contributions are welcome. Note that all contributions are subject to the licens
 1. Install the atlassian-plugin-sdk to get a local instance of the Jira REST API to test against. Follow the instructions at
   1. https://developer.atlassian.com/server/framework/atlassian-sdk/downloads/
   1. https://developer.atlassian.com/server/framework/atlassian-sdk/create-a-helloworld-plugin-project/
-1. When you've created your plugin and the server is running, login and create a project
+  1. Run Jira by being in the plugin directory and running `atlas-run`
+1. When you've created your plugin and the server is running, login and create a project and a few issues to  test on

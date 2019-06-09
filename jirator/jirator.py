@@ -1,44 +1,12 @@
-from jira import JIRA
-from consolemenu import *
-from consolemenu.items import *
-from os.path import expanduser
-import json
+from workaction import WorkAction
+import argparse
 
-open_statuses = []
-homedir = expanduser("~")
-
-def setup():
-    print("running setup")
-
-    with open(homedir + "/.jirator/config") as fh:
-        data = json.load(fh)
-
-    options = {
-        "server": data["server"]
-    }
-
-    jira = JIRA(options=options, basic_auth=(data["username"],data["password"]))
-    for s in data["status"]:
-        app = '\"' + s + '\"'
-        open_statuses.append(app)
-    return jira
-
-def showmenu(commands):
-    menu = ConsoleMenu("Jirator","Select issue to work on")
-    for c in commands:
-        menu.append_item(c)
-    menu.show()
-
-def fetch_issues(jira):
-    statuses = ",".join(open_statuses)
-
-    my_issues = jira.search_issues('assignee=currentUser() and status in (' + statuses +')')
-    cmds = []
-    for issue in my_issues:
-        cmd_item = CommandItem('{}: {}'.format(issue.key, issue.fields.summary), "git", ["checkout","-b",issue.key], should_exit=True)
-        cmds.append(cmd_item)
-    return cmds
+parser = argparse.ArgumentParser(description="Default argument parser")
+parser.add_argument("--version", action="version", version="jirator %s" % ("not-specified"), help="show the current jirator version information")
+parser.add_argument("work", action=WorkAction, help="select issue from list and checkout to that branch")
 
 def main():
-    jira = setup()
-    showmenu(fetch_issues(jira))
+    args = parser.parse_args()
+
+if __name__== '__main__':
+    main()
