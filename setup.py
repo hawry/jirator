@@ -20,9 +20,9 @@ setuptools.setup(
     url="https://github.com/hawry/jirator",
     packages=setuptools.find_packages(),
     install_requires=[
-        "console-menu",
-        "jira",
-        "click"
+        "console-menu==0.5.1",
+        "jira==2.0.0",
+        "click==6.7"
     ],
     classifiers=[
         "Programming Language :: Python :: 2.7",

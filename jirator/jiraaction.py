@@ -22,12 +22,14 @@ class JiraAction():
             with open(homedir + "/.jirator/config") as fh:
                 data = json.load(fh)
             options = {
-                "server": data["server"]
+                "server": self.userdata.server()
             }
-            self.jira = JIRA(options=options,basic_auth=(data["username"],data["password"]))
-            for s in data["status"]:
-                app = '\"' + s + '\"'
-                self.open_statuses.append(app)
+            self.jira = JIRA(options=options,basic_auth=(self.userdata.username(),self.userdata.password()))
+            if len(self.open_statuses) != len(self.userdata.statuses()):
+                self.open_statuses = []
+                for s in self.userdata.statuses():
+                    app = '\"' + s + '\"'
+                    self.open_statuses.append(app)
 
     def fetch_open_issues(self):
         statuses = ",".join(self.open_statuses)
@@ -39,7 +41,9 @@ class JiraAction():
 
         if sdtid is not None:
             return sdtid
+        return self._dtid_user_input(issuekey)
 
+    def _dtid_user_input(self,issuekey):
         print("Could not find any default transition id for this issue; please select one to use as the default 'in progress' transition:\n")
 
         trs = self.jira.transitions(issuekey)

@@ -3,14 +3,6 @@ from assignaction import AssignAction
 from constant import VERSION, LOGGER
 import logging
 import click
-# import argparse
-
-# parser = argparse.ArgumentParser(description="Default argument parser")
-# parser.add_argument("workwork")
-# parser.add_argument("--version", action="version", version="jirator %s" % (VERSION), help="show the current jirator version information")
-# parser.add_argument("work", action=WorkAction, nargs='?', help="select issue from list and checkout to that branch")
-# parser.add_argument("assign", action=AssignAction, nargs='?', help="manually provide issue number and assign it to you, and automatically move it to an in progress state")
-# parser.add_argument("--verbose", "-v", action="store_true", default=False, help="enable debug logging")
 
 def set_log_level(ctx,param,value):
     if value == True:
@@ -33,8 +25,7 @@ def assign(issue):
 
 @click.command()
 def work():
-    w = WorkAction()
-    w()
+    w = WorkAction()()
 
 main.add_command(assign)
 main.add_command(work)
