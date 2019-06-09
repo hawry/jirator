@@ -1,3 +1,11 @@
+[![PyPI version](https://badge.fury.io/py/jirator.svg)](https://badge.fury.io/py/jirator)
+
+# Jirator
+
+## Install
+
+`pip install jirator`
+
 ## Configuration
 
 jirator will look in `~/.jirator/config` for a configuration file, which will specify server to use, credentials for the server and what issue statuses jirator should consider as "open" issues (i.e. the ones that will be shown for you).
