@@ -7,7 +7,7 @@ with open("README.md","r") as fh:
 
 setuptools.setup(
     name="jirator",
-    version="0.1.1",
+    version="0.1.2",
     author="hawry",
     entry_points = {
         "console_scripts": ["jirator=jirator.jirator:main"]
