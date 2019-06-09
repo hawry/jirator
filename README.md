@@ -23,3 +23,13 @@ Contributions are welcome. Note that all contributions are subject to the licens
   1. https://developer.atlassian.com/server/framework/atlassian-sdk/create-a-helloworld-plugin-project/
   1. Run Jira by being in the plugin directory and running `atlas-run`
 1. When you've created your plugin and the server is running, login and create a project and a few issues to  test on
+
+### Create a release
+
+Run the following command in the root path:
+
+`python setup.py sdist`
+
+install locally:
+
+`pip install (--user) /path/to/tarfile`

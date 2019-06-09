@@ -1,19 +1,16 @@
-import argparse
 from jiraaction import JiraAction
 from consolemenu import *
 from consolemenu.items import *
+import logging
 
-class WorkAction(argparse.Action):
-    def __init__(self,option_strings,dest,nargs=None, **kwargs):
-        print("running WorkAction init")
-        super(WorkAction,self).__init__(option_strings,dest,**kwargs)
+class WorkAction():
+    jira = None
+    def __init__(self):
+        self.jira = JiraAction()
+        self.jira.setup()
 
-    def __call__(self,parser,namespace,values,option_string=None):
-        setattr(namespace, self.dest,values)
-        jira = JiraAction()
-        jira.setup()
-
-        my_issues = jira.fetch_open_issues()
+    def __call__(self):
+        my_issues = self.jira.fetch_open_issues()
         self._showmenu(self._convert_to_command(my_issues))
 
     def _convert_to_command(self, issues):

@@ -1,13 +1,14 @@
 import setuptools
 import re
 import os
+from jirator.constant import VERSION
 
 with open("README.md","r") as fh:
     long_desc = fh.read()
 
 setuptools.setup(
     name="jirator",
-    version="0.1.2",
+    version=VERSION,
     author="hawry",
     entry_points = {
         "console_scripts": ["jirator=jirator.jirator:main"]
@@ -21,7 +22,7 @@ setuptools.setup(
     install_requires=[
         "console-menu",
         "jira",
-        "argparse"
+        "click"
     ],
     classifiers=[
         "Programming Language :: Python :: 2.7",
